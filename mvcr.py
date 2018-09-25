@@ -10,7 +10,7 @@ def getDownloadUrlFromMvcr():
   url = ""
   for link in BeautifulSoup(response.content, parseOnlyThese=SoupStrainer('a')):
       if link.has_key(u'href'):
-          if "prehled" in link['href']:
+          if "soubor" in link['href']:
               url = "http://www.mvcr.cz/" + link['href']
               print "Download url: {}".format(url)
               return url
