@@ -45,9 +45,9 @@ def sendmail():
     print ('email sent')
 
 
-def searchForID(id, filename=XLS_FIL_ENAME):
+def searchForID(id, page, filename=XLS_FIL_ENAME):
   book = open_workbook(filename)
-  sheet = book.sheets()[2]
+  sheet = book.sheets()[int(page)]
   print u"Excel sheet name: {}".format(sheet.name)
   found = False
 
@@ -62,13 +62,15 @@ def searchForID(id, filename=XLS_FIL_ENAME):
 
   if not found: print "Your number was not found :("
 
-def main(id):
+def main(id, page):
   url = getDownloadUrlFromMvcr()
   downloadXlsFileFromMvcr(url)
-  searchForID(id)
+  searchForID(id, page)
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description="MVCR visa application results")
   parser.add_argument("-id", "--id", default="OAM-27/TP-2017", help="Provide your registered number")
+  parser.add_argument("-page", "--page", default="0", help="Provide excel page number. 0 - Long Term Residence (Default), 1 - Work Permit, 2 - Permanent Residence")
+
   args = parser.parse_args()
-  main(args.id)
+  main(args.id, args.page)
