@@ -3,3 +3,4 @@
 
 Usage: 
  `python mvcr.py --id OAM-2491/TP-2017`
+ `node mvcr.js`
